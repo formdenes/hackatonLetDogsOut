@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Left, Body, Right, Title } from 'native-base';
 import TestComponent from './components/TestComponent'
 // import RecipeCard from './components/RecipeCard'
 import SearchBar from './components/SearchBar';
+=======
+import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text,Left, Body, Right, Title } from 'native-base';
+import { StyleSheet } from 'react-native'
+>>>>>>> master
 
 export default class Main extends Component {
   render() {
     return (
       <Container>
+<<<<<<< HEAD
         <Header>
           <Left />
           <Body>
@@ -40,7 +46,16 @@ export default class Main extends Component {
             </Button>
           </FooterTab>
         </Footer>
+=======
+        <Content />
+>>>>>>> master
       </Container>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  header: {
+    textAlign: 'center'
+  }
+});

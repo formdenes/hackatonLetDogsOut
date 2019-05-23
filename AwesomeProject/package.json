@@ -7,10 +7,20 @@
     "test": "jest"
   },
   "dependencies": {
+    "dotenv": "^8.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "mysql": "^2.17.1",
     "native-base": "^2.12.1",
     "react": "16.8.3",
     "react-native": "0.59.8",
+<<<<<<< HEAD
     "react-native-elements": "^1.1.0"
+=======
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.11.0"
+>>>>>>> master
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
