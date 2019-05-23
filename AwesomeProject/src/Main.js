@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text,Left, Body, Right, Title } from 'native-base';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Left, Body, Right, Title } from 'native-base';
+import TestComponent from './components/TestComponent'
+// import RecipeCard from './components/RecipeCard'
+import SearchBar from './components/SearchBar';
 
 export default class Main extends Component {
   render() {
     return (
       <Container>
         <Header>
-          <Left/>
+          <Left />
           <Body>
             <Title>DOGFOOD</Title>
           </Body>
           <Right />
         </ Header>
-        <Content />
+        <Content>
+        </Content>
+        <TestComponent />
+        {/* <RecipeCard /> */}
+        {/* <SearchBar /> */}
         <Footer>
           <FooterTab>
             <Button vertical>
