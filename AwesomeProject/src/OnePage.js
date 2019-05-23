@@ -43,7 +43,8 @@ export default class OneRecipePage extends Component {
   }
 
   render() {
-    const { thumbnail: URL, title } = oneRecipe;
+    console.log('props', this.props)
+    const { thumbnail: URL, title } = this.props.navigation.state.params;
     return (
       <Container>
         <Content>

@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList, Image, ActivityIndicator, TouchableHighligh
 import { H2 } from 'native-base';
 import { Button } from 'react-native-elements';
 
+
 export default class FoodFeed extends Component {
   constructor() {
     super();
@@ -38,7 +39,10 @@ export default class FoodFeed extends Component {
 
   renderRow = ({ item }) => {
     return (
-      <TouchableHighlight onPress={() => { alert(item.title) }}>
+      <TouchableHighlight onPress={(e) => {
+        console.log(item);
+        return this.props.navigation.navigate('OnePage', item);
+      }}>
         <View style={styles.item} >
           <Image source={{ uri: item.thumbnail ? item.thumbnail : 'https://freeiconshop.com/wp-content/uploads/edd/food-outline.png' }} style={styles.itemImage} />
           <H2 style={styles.itemText}>{item.title}</H2>
