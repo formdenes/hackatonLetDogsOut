@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
 import { H2 } from 'native-base';
-import { Button, SearchBar } from 'react-native-elements'
+import { Button, SearchBar } from 'react-native-elements';
+import { TestChild } from './SearchBar'
 
 export default class Test extends Component {
   constructor() {
@@ -36,6 +37,10 @@ export default class Test extends Component {
       })
   }
 
+  testAlert() {
+    alert('i work')
+  }
+
   renderRow = ({ item }) => {
     return (
       <TouchableHighlight onPress={() => { alert(item.title) }}>
@@ -61,30 +66,35 @@ export default class Test extends Component {
       </View>
     )
   }
-
   render() {
+    const searchVisible = this.state.searchVisible;
+    let searchBar;
+    if (searchVisible) {
+      searchBar = (<View style={styles.searchContainer}>
+        <TextInput
+          containerStyle={{ backgroundColor: 'blue' }}
+          placeholder="Add your ingredients"
+          placeholderTextColor="black"
+          onChangeText={terms => this.setState({ searchTerms: terms })}
+          value={this.state.searchTerms}
+        />
+        <Button
+          style={styles.searchButton}
+          title="search"
+          onPress={() => {
+            this.setState({
+              data: []
+            })
+            this.getData()
+          }}
+        />
+      </View>)
+    } else {
+      searchBar = <View></View>
+    }
     return (
       <View>
-        <View style={styles.searchContainer}>
-          <TextInput
-            containerStyle={{ backgroundColor: 'blue' }}
-            placeholder="Add your ingredients"
-            placeholderTextColor="black"
-            onChangeText={terms => this.setState({ searchTerms: terms })}
-            value={this.state.searchTerms}
-          />
-          <Button
-            style={styles.searchButton}
-            title="search"
-            onPress={() => {
-              this.setState({
-                data: [],
-                searchVisible: false
-              })
-              this.getData()
-            }}
-          />
-        </View>
+        {searchBar}
         <FlatList
           style={styles.container}
           data={this.state.data}
@@ -104,15 +114,15 @@ const styles = StyleSheet.create({
     // marginTop: 20,
   },
   item: {
+    display: 'flex',
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     marginBottom: 10,
-
   },
   itemImage: {
     width: '100%',
     height: 300,
-    resizeMode: 'cover'
+    resizeMode: 'cover',
   },
   itemText: {
     padding: 5,
