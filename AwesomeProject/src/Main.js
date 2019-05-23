@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text,Left, Body, Right, Title } from 'native-base';
-import { StyleSheet } from 'react-native'
+import { Container, Content} from 'native-base';
+import { StyleSheet } from 'react-native';
 
 export default class Main extends Component {
   render() {
