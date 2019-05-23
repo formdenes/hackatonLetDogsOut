@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import { Container, Footer } from 'native-base';
-import Main from './src/Main';
-import MyHeader from './src/Header';
-import FooterMenu from './src/Footer';
-
-
-type Props = {};
-export default class App extends Component<Props> {
+// import { StyleSheet, View } from 'react-native';
+import InstaClone from './src/InstaClone.js'
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import { OnePage, Favorites } from './src/components/presentation/';
+class App extends Component {
   render() {
     return (
-      <Container >
-        <MyHeader />
-        {/* <Main /> */}
-        <FooterMenu />
-      </Container>
+      <AppContainer />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  app: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+const AppNavigator = createStackNavigator({
+  Home: Favorites,
+  OnePage: OnePage,
+},
+  {
+    initialRouteName: 'Home',
+  });
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default AppContainer;
