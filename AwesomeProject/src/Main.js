@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text,Left, Body, Right, Title } from 'native-base';
+import { StyleSheet } from 'react-native'
 
 export default class Main extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <Left/>
+        <Header style={styles.header}>
+          <Left />
           <Body>
             <Title>DOGFOOD</Title>
           </Body>
@@ -37,3 +38,9 @@ export default class Main extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  header: {
+    textAlign: 'center'
+  }
+});
