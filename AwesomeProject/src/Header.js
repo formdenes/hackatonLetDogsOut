@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Left, Body, Right, Title, View } from 'native-base';
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 export default class MyHeader extends Component {
   render() {

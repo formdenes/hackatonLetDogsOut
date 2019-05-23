@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Icon } from "native-base";
 import Home from "./Home"
-import FoodFeed from "./components/FoodFeed.js"
+import FoodFeed from "./components/FoodFeed.js";
+import SurpriseMe from "./components/SurpriseMe";
 import Random from "./Random.js";
 import Settings from "./Settings.js";
 import Search from "./Search.js";
@@ -10,7 +11,7 @@ import Search from "./Search.js";
 const TabNavigator = createBottomTabNavigator({
   Home: FoodFeed,
   Search: Search,
-  Shuffle: Random,
+  Shuffle: SurpriseMe,
   Settings: Settings,
 },
   {
