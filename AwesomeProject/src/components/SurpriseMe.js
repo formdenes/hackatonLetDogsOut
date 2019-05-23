@@ -25,7 +25,8 @@ export default class SurpriseMe extends Component {
     super()
     this.state = {
       data: [],
-      loaded: false
+      loaded: false,
+      page: Math.floor(Math.random() * 50)
     }
   }
 
@@ -34,7 +35,7 @@ export default class SurpriseMe extends Component {
   }
 
   getData = async () => {
-    let url = `https://www.food2fork.com/api/search?key=c56c10f2ab9903dc69ed2e642518da30`;
+    let url = `https://www.food2fork.com/api/search?key=c56c10f2ab9903dc69ed2e642518da30&page=${this.state.page}`;
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
