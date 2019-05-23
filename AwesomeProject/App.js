@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import { Container, Footer } from 'native-base';
-import Main from './src/Main';
+import { StyleSheet } from 'react-native';
+import { Container } from 'native-base';
 import MyHeader from './src/Header';
 import FooterMenu from './src/Footer';
 
@@ -12,7 +11,6 @@ export default class App extends Component<Props> {
     return (
       <Container >
         <MyHeader />
-        {/* <Main /> */}
         <FooterMenu />
       </Container>
     );
