@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text,Left, Body, Right, Title } from 'native-base';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Left, Body, Right, Title, View } from 'native-base';
 import { StyleSheet } from 'react-native'
 
 export default class MyHeader extends Component {
   render() {
     return (
-      <Container>
+      <View>
         <Header style={styles.header}>
           <Left />
           <Body>
@@ -13,7 +13,7 @@ export default class MyHeader extends Component {
           </Body>
           <Right />
         </ Header>
-      </Container>
+      </View>
     );
   }
 }

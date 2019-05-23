@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, View, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
 import { H2 } from 'native-base';
-import { Button, SearchBar } from 'react-native-elements';
-import { TestChild } from './SearchBar'
+import { Button } from 'react-native-elements';
 
-export default class Test extends Component {
+export default class FoodFeed extends Component {
   constructor() {
     super();
     this.state = {
@@ -35,10 +34,6 @@ export default class Test extends Component {
           data: this.state.data.concat(responseJson.results)
         })
       })
-  }
-
-  testAlert() {
-    alert('i work')
   }
 
   renderRow = ({ item }) => {
@@ -133,17 +128,16 @@ const styles = StyleSheet.create({
   },
   searchBarContainer: {
     flexDirection: "row",
-    marginTop: 75,
-    marginLeft: 10,
-    marginRight: 10,
+    // marginTop: 75,
+    // marginLeft: 10,
+    // marginRight: 10,
     // position: 'fixed'
   },
   searchBarText: {
     flex: 1
   },
   searchButton: {
-    height: 30,
+    // height: 30,
     marginBottom: 8
-
   }
 })
