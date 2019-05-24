@@ -21,18 +21,13 @@ export default class FoodFeed extends Component {
   }
 
   getData = async () => {
-    let url;
-    if (this.state.searchTerms === '') {
-      url = `http://www.recipepuppy.com/api/?p=${this.state.page}`
-    } else {
-      url = `http://www.recipepuppy.com/api/?i=${this.state.searchTerms}&p=${this.state.page}`
-    };
-
+    let url = 'http://54.93.64.90:8080';
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson)
         this.setState({
-          data: this.state.data.concat(responseJson.results)
+          data: responseJson.rows,
         })
       })
   }
@@ -66,30 +61,28 @@ export default class FoodFeed extends Component {
     )
   }
   render() {
-    console.log(this.state.data)
     const searchVisible = this.state.searchVisible;
     let searchBar;
     if (searchVisible) {
-      searchBar = (
-        <View style={styles.searchContainer}>
-          <TextInput
-            containerStyle={{ backgroundColor: 'blue' }}
-            placeholder="Add your ingredients"
-            placeholderTextColor="black"
-            onChangeText={terms => this.setState({ searchTerms: terms })}
-            value={this.state.searchTerms}
-          />
-          <Button
-            style={styles.searchButton}
-            title="search"
-            onPress={() => {
-              this.setState({
-                data: []
-              })
-              this.getData()
-            }}
-          />
-        </View>)
+      searchBar = (<View style={styles.searchContainer}>
+        <TextInput
+          containerStyle={{ backgroundColor: 'blue' }}
+          placeholder="Add your ingredients"
+          placeholderTextColor="black"
+          onChangeText={terms => this.setState({ searchTerms: terms })}
+          value={this.state.searchTerms}
+        />
+        <Button
+          style={styles.searchButton}
+          title="search"
+          onPress={() => {
+            this.setState({
+              data: []
+            })
+            this.getData()
+          }}
+        />
+      </View>)
     } else {
       searchBar = <View></View>
     }
@@ -134,6 +127,10 @@ const styles = StyleSheet.create({
   },
   searchBarContainer: {
     flexDirection: "row",
+    // marginTop: 75,
+    // marginLeft: 10,
+    // marginRight: 10,
+    // position: 'fixed'
   },
   searchBarText: {
     flex: 1
@@ -141,7 +138,5 @@ const styles = StyleSheet.create({
   searchButton: {
     // height: 30,
     marginBottom: 8
-  },
-  searchContainer: {
   }
 })
