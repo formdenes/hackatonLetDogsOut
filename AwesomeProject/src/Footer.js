@@ -1,14 +1,12 @@
 import React from 'react';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Icon } from "native-base";
-import Home from "./Home"
 import OnePage from './OnePage';
 import FoodFeed from "./components/FoodFeed.js"
-import Random from "./Random.js";
-import Settings from "./Settings.js";
 import Search from "./Search.js";
 import Favorites from './Favorites';
-import SurpriseMe from './components/SurpriseMe'
+import SurpriseMe from './components/SurpriseMe';
+import AddRecipes from './components/AddRecipes'
 
 const FoodFeedStack = createStackNavigator({
   Feed: FoodFeed,
@@ -32,7 +30,7 @@ const TabNavigator = createBottomTabNavigator({
   Home: FeedContainer,
   'Suprise!': SurpriseMe,
   Favorites: FavoriteStack,
-  New: Settings,
+  New: AddRecipes,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -43,8 +41,10 @@ const TabNavigator = createBottomTabNavigator({
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'tomato',
-      inactiveTintColor: 'gray',
+      activeTintColor: '#ffd800',
+      inactiveTintColor: '#8512AF',
+      activeBackgroundColor: '#8512AF',
+      inactiveBackgroundColor: '#ffd800',
     },
   });
 
