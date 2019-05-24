@@ -21,18 +21,13 @@ export default class FoodFeed extends Component {
   }
 
   getData = async () => {
-    let url;
-    if (this.state.searchTerms === '') {
-      url = `http://www.recipepuppy.com/api/?p=${this.state.page}`
-    } else {
-      url = `http://www.recipepuppy.com/api/?i=${this.state.searchTerms}&p=${this.state.page}`
-    };
-
+    let url = 'http://54.93.64.90:8080';
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson)
         this.setState({
-          data: this.state.data.concat(responseJson.results)
+          data: responseJson.rows,
         })
       })
   }
@@ -66,7 +61,6 @@ export default class FoodFeed extends Component {
     )
   }
   render() {
-    console.log(this.state.data)
     const searchVisible = this.state.searchVisible;
     let searchBar;
     if (searchVisible) {
