@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { Image } from 'react-native';
-import { Linking, H2, Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
-
-const oneRecipe = {
-  "title": "Amy's Barbecue Chicken Salad",
-  "href": "http:\/\/allrecipes.com\/Recipe\/Amys-Barbecue-Chicken-Salad\/Detail.aspx",
-  "ingredients": "barbecue sauce, chicken, cilantro, lettuce, ranch dressing, lettuce, tomato",
-  "thumbnail": "http:\/\/img.recipepuppy.com\/10.jpg",
-};
-
-
+import { StyleSheet, Linking, H2, Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 export default class OneRecipePage extends Component {
 
-  /*   constructor(props) {
-      super(props)
-     
-    } */
+  constructor(props) {
+    super(props)
+    this.state = {
+      button: () => (<Button transparent textStyle={{ color: '#87838B' }} onPress={() => { this.postFavorite().catch(console.log) }}>
+        <Icon name="pizza" />
+        <Text>Add Favorite</Text>
+      </Button>),
+    }
+
+  }
 
   createIngredientList() {
-    const { ingredients } = oneRecipe;
+    const { ingredients } = this.props.navigation.state.params;
     return ingredients.split(',').map((element, index) => (
       <Text key={index} style={{
         fontSize: 22
@@ -26,9 +23,13 @@ export default class OneRecipePage extends Component {
     ))
   }
 
-  postFavorite() {
-    const databaseURL = '10.27.6.159:8080'; // TODO: change to the proper endpoint
-    const postData = oneRecipe; // TODO: change to props
+  /*   renderFavButton = () => {
+  
+    } */
+
+  postFavorite = async () => {
+    const databaseURL = 'http://54.93.64.90:8080/addFav'; // TODO: change to the proper endpoint
+    const postData = this.props.navigation.state.params; // TODO: change to props
     const postFavoriteOptions = {
       method: 'POST',
       headers: {
@@ -37,9 +38,18 @@ export default class OneRecipePage extends Component {
       },
       body: JSON.stringify(postData),
     };
-    fetch(databaseURL, postFavoriteOptions)
-      .then(response => response.json())
-      .catch(console.log);
+    const response = await fetch(databaseURL, postFavoriteOptions);
+    const respData = await response.json();
+    if (respData.rows.affectedRows === 1) {
+      this.setState({
+        button: () => (<Button transparent textStyle={{ color: 'orange' }}>
+          <Icon name="pizza" />
+          <Text>Added to Favorite</Text>
+        </Button>)
+      })
+
+    }
+    console.log('fetch good resp', respData);
   }
 
   render() {
@@ -90,12 +100,11 @@ export default class OneRecipePage extends Component {
             </CardItem>
             <CardItem>
               <Left>
-                <Button transparent textStyle={{ color: '#87838B' }} onPress={() => {
-
-                }}>
+                {/* <Button transparent textStyle={{ color: '#87838B' }} onPress={() => { this.postFavorite().catch(console.log) }}>
                   <Icon name="pizza" />
                   <Text>Add Favorite</Text>
-                </Button>
+                </Button> */}
+                {this.state.button()}
               </Left>
             </CardItem>
           </Card>
@@ -105,3 +114,8 @@ export default class OneRecipePage extends Component {
   }
 };
 
+/* const styles = StyleSheet.create({
+  favorite: {
+    // marginTop: 20,
+  },
+}) */

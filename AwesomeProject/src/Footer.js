@@ -7,6 +7,7 @@ import FoodFeed from "./components/FoodFeed.js"
 import Random from "./Random.js";
 import Settings from "./Settings.js";
 import Search from "./Search.js";
+import Favorites from './Favorites';
 
 const FoodFeedStack = createStackNavigator({
   Feed: FoodFeed,
@@ -19,10 +20,10 @@ const FoodFeedStack = createStackNavigator({
 const FeedContainer = createAppContainer(FoodFeedStack);
 
 const TabNavigator = createBottomTabNavigator({
-  Home: FoodFeedStack,
+  Home: FeedContainer,
   Search: Search,
   Shuffle: Random,
-  Settings: Settings,
+  Settings: Favorites,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
