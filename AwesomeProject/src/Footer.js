@@ -18,13 +18,21 @@ const FoodFeedStack = createStackNavigator({
     initialRouteName: 'Feed',
   });
 
+const FavoriteStack = createStackNavigator({
+  FavoriteFeed: Favorites,
+  FavoritePage: OnePage,
+},
+  {
+    initialRouteName: 'FavoriteFeed',
+  });
+
 const FeedContainer = createAppContainer(FoodFeedStack);
 
 const TabNavigator = createBottomTabNavigator({
   Home: FeedContainer,
   Search: Search,
   Shuffle: SurpriseMe,
-  Settings: Favorites,
+  Settings: FavoriteStack,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
