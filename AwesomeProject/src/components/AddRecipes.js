@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import postRecipe from '../services/postRecipes';
 
 export default class AddRecipes extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -17,14 +16,13 @@ export default class AddRecipes extends React.Component {
       writeText: '',
       collection: {}
     }
-    console.warn('title', this.state.title);
   }
 
   handleSubmit = () => {
     let collection = {};
     collection.title = this.state.title;
     collection.ingredients = `${this.state.ingredient1
-      + ' ' + this.state.ingredient2 + ' ' +
+      + ',' + this.state.ingredient2 + ',' +
       this.state.ingredient3}`;
     collection.image = this.state.image;
     postRecipe(collection);
@@ -32,7 +30,7 @@ export default class AddRecipes extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <Text style={{ fontSize: 30, textAlign: 'center', paddingBottom: 30 }}>Add your recipe</Text>
         <TextInput
           style={styles.textInput}
@@ -71,7 +69,8 @@ export default class AddRecipes extends React.Component {
         >
           <Text style={styles.saveRecipeButtonText}>Save Recipe</Text>
         </TouchableOpacity>
-      </View>
+        <View style={{ height: 60 }} />
+      </KeyboardAvoidingView>
     );
   }
 }

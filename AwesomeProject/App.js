@@ -34,7 +34,7 @@ export default class App extends Component<Props> {
     }
     return (
       <Container >
-        <StatusBar />
+        <StatusBar backgroundColor="red" barStyle="light-content" />
         <FooterMenu />
       </Container>
 

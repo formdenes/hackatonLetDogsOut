@@ -30,8 +30,7 @@ const TabNavigator = createBottomTabNavigator({
   Home: FeedContainer,
   'Suprise!': SurpriseMe,
   Favorites: FavoriteStack,
-  New: Settings,
-  Search: AddRecipes,
+  New: AddRecipes,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({

@@ -9,7 +9,8 @@ export default class SurpriseMe extends Component {
     this.state = {
       data: [],
       loaded: false,
-      page: Math.floor(Math.random() * 50)
+      page: Math.floor(Math.random() * 50),
+      timeOut: false
     }
   }
 
@@ -27,24 +28,7 @@ export default class SurpriseMe extends Component {
           loaded: true
         })
       })
-  }
 
-  postFavorite = async (item) => {
-    const databaseURL = 'http://54.93.64.90:8080/addFav';
-    const postData = item
-    const postFavoriteOptions = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
-    };
-    const response = await fetch(databaseURL, postFavoriteOptions);
-    const respData = await response.json();
-    if (respData.rows.affectedRows === 1) {
-      alert(item)
-    }
   }
 
   render() {
@@ -55,11 +39,10 @@ export default class SurpriseMe extends Component {
           <View>
             <DeckSwiper
               // onSwipeLeft={() => { alert('not saved') }}
-              onSwipeRight={() => { this.postFavorite(data) }}
               dataSource={data}
               renderItem={item =>
                 <Card style={{ elevation: 3 }}
-                  >
+                >
                   <CardItem>
                     <Left>
                       <Thumbnail source={{ uri: item.thumbnail ? item.thumbnail : 'https://freeiconshop.com/wp-content/uploads/edd/food-outline.png' }} />
