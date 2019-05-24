@@ -30,14 +30,16 @@ const FeedContainer = createAppContainer(FoodFeedStack);
 
 const TabNavigator = createBottomTabNavigator({
   Home: FeedContainer,
-  Search: Search,
-  Shuffle: SurpriseMe,
-  Settings: FavoriteStack,
+  'Suprise!': SurpriseMe,
+  Favorites: FavoriteStack,
+  New: Settings,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        return <Icon name={navigation.state.routeName.toLowerCase()} />;
+        const pageName = navigation.state.routeName;
+        const name = pageName === 'Home' ? 'home' : pageName === 'Suprise!' ? 'paw' : pageName === 'New' ? 'add' : 'heart';
+        return <Icon name={name} />;
       },
     }),
     tabBarOptions: {
