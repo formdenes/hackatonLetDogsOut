@@ -1,17 +1,30 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Icon } from "native-base";
 import Home from "./Home"
+import OnePage from './OnePage';
 import FoodFeed from "./components/FoodFeed.js"
 import Random from "./Random.js";
 import Settings from "./Settings.js";
 import Search from "./Search.js";
+import Favorites from './Favorites';
+import SurpriseMe from './components/SurpriseMe'
+
+const FoodFeedStack = createStackNavigator({
+  Feed: FoodFeed,
+  OnePage: OnePage,
+},
+  {
+    initialRouteName: 'Feed',
+  });
+
+const FeedContainer = createAppContainer(FoodFeedStack);
 
 const TabNavigator = createBottomTabNavigator({
-  Home: FoodFeed,
+  Home: FeedContainer,
   Search: Search,
-  Shuffle: Random,
-  Settings: Settings,
+  Shuffle: SurpriseMe,
+  Settings: Favorites,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -24,5 +37,7 @@ const TabNavigator = createBottomTabNavigator({
       inactiveTintColor: 'gray',
     },
   });
+
+
 
 export default createAppContainer(TabNavigator);
