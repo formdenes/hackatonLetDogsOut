@@ -1,11 +1,8 @@
 import React from 'react';
 import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
 import { Icon } from "native-base";
-import Home from "./Home"
 import OnePage from './OnePage';
 import FoodFeed from "./components/FoodFeed.js"
-import Random from "./Random.js";
-import Settings from "./Settings.js";
 import Search from "./Search.js";
 import Favorites from './Favorites';
 import SurpriseMe from './components/SurpriseMe'
