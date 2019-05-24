@@ -42,7 +42,7 @@ export default class OneRecipePage extends Component {
     const respData = await response.json();
     if (respData.rows.affectedRows === 1) {
       this.setState({
-        button: () => (<Button transparent textStyle={{ color: 'orange' }}>
+        button: () => (<Button transparent textStyle={{ color: 'red' }}>
           <Icon name="pizza" />
           <Text>Added to Favorite</Text>
         </Button>)
