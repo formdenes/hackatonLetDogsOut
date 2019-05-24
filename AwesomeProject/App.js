@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import { Container } from 'native-base';
+import FooterMenu from './src/Footer';
 import SplashScreen from './src/components/SplashScreen';
-import MyHeader from './src/Header'
-import FooterMenu from './src/Footer'
 
 
 type Props = {};
@@ -36,7 +35,6 @@ export default class App extends Component<Props> {
     return (
       <Container >
         <StatusBar />
-        <MyHeader />
         <FooterMenu />
       </Container>
 

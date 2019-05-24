@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Left, Body, Right, Title, View } from 'native-base';
 import { StyleSheet } from 'react-native';
 
-export default class MyHeader extends Component {
+export default class FeedHeader extends Component {
   render() {
     return (
-      <View>
+      <View style={styles.view}>
         <Header style={styles.header}>
           <Left>
             <Button
@@ -37,5 +37,8 @@ const styles = StyleSheet.create({
     color: '#8512AF',
     justifyContent: 'center',
     marginRight: '15%'
+  },
+  view: {
+    backgroundColor: 'black'
   }
 });
