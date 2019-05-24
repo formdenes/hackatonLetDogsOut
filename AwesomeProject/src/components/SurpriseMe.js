@@ -35,12 +35,12 @@ export default class SurpriseMe extends Component {
   }
 
   getData = async () => {
-    let url = `https://www.food2fork.com/api/search?key=c56c10f2ab9903dc69ed2e642518da30&page=${this.state.page}`;
+    let url = `http://www.recipepuppy.com/api/?p=${this.state.page}`;
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
-          data: this.state.data.concat(responseJson.recipes),
+          data: this.state.data.concat(responseJson.results),
           loaded: true
         })
       })
@@ -58,19 +58,19 @@ export default class SurpriseMe extends Component {
                 <Card style={{ elevation: 3 }}>
                   <CardItem>
                     <Left>
-                      <Thumbnail source={{ uri: item.image_url }} />
+                      <Thumbnail source={{ uri: item.thumbnail }} />
                       <Body>
                         <Text>{item.title}</Text>
-                        <Text note>{item.publisher}</Text>
+                        <Text note>{item.ingredients}</Text>
                       </Body>
                     </Left>
                   </CardItem>
                   <CardItem cardBody>
-                    <Image style={{ height: 300, flex: 1 }} source={{ uri: item.image_url }} />
+                    <Image style={{ height: 300, flex: 1 }} source={{ uri: item.thumbnail }} />
                   </CardItem>
                   <CardItem>
                     <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                    <Text onPress={() => { Linking.openURL(item.source_url) }}>View the recipe</Text>
+                    <Text onPress={() => { Linking.openURL(item.href) }}>View the recipe</Text>
                   </CardItem>
                 </Card>
               }
