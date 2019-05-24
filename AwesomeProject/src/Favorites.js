@@ -16,6 +16,10 @@ export default class FoodFeed extends Component {
     }
   }
 
+  static navigationOptions = {
+    header: null,
+  }
+
   componentDidMount() {
     this.getData()
   }
