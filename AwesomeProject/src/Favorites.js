@@ -36,7 +36,7 @@ export default class FoodFeed extends Component {
     return (
       <TouchableHighlight onPress={(e) => {
         console.log(item);
-        return this.props.navigation.navigate('OnePage', item);
+        return this.props.navigation.navigate('FavoritePage', item);
       }}>
         <View style={styles.item} >
           <Image source={{ uri: item.thumbnail ? item.thumbnail : 'https://freeiconshop.com/wp-content/uploads/edd/food-outline.png' }} style={styles.itemImage} />
