@@ -5,7 +5,8 @@ import OnePage from './OnePage';
 import FoodFeed from "./components/FoodFeed.js"
 import Search from "./Search.js";
 import Favorites from './Favorites';
-import SurpriseMe from './components/SurpriseMe'
+import SurpriseMe from './components/SurpriseMe';
+import AddRecipes from './components/AddRecipes'
 
 const FoodFeedStack = createStackNavigator({
   Feed: FoodFeed,
@@ -27,7 +28,7 @@ const FeedContainer = createAppContainer(FoodFeedStack);
 
 const TabNavigator = createBottomTabNavigator({
   Home: FeedContainer,
-  Search: Search,
+  Search: AddRecipes,
   Shuffle: SurpriseMe,
   Settings: FavoriteStack,
 },
