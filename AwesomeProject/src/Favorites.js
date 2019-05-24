@@ -19,6 +19,10 @@ export default class FoodFeed extends Component {
     }
   }
 
+  static navigationOptions = {
+    header: null,
+  }
+
   componentDidMount() {
     this.getData()
   }
@@ -87,7 +91,7 @@ export default class FoodFeed extends Component {
   }
   render() {
     const searchVisible = this.state.searchVisible;
-    let searchBar;
+    /* let searchBar;
     if (searchVisible) {
       searchBar = (<View style={styles.searchContainer}>
         <TextInput
@@ -110,7 +114,7 @@ export default class FoodFeed extends Component {
       </View>)
     } else {
       searchBar = <View></View>
-    }
+    } */
     return (
       <View>
         <FlatList
