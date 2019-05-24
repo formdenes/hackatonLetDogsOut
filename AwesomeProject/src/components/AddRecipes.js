@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   saveRecipeButton: {
     borderWidth: 1,
-    backgroundColor: '#ffd800',
+    backgroundColor: '#8512AF',
     padding: 15,
     margin: 5
   },
