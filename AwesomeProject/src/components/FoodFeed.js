@@ -70,25 +70,26 @@ export default class FoodFeed extends Component {
     const searchVisible = this.state.searchVisible;
     let searchBar;
     if (searchVisible) {
-      searchBar = (<View style={styles.searchContainer}>
-        <TextInput
-          containerStyle={{ backgroundColor: 'blue' }}
-          placeholder="Add your ingredients"
-          placeholderTextColor="black"
-          onChangeText={terms => this.setState({ searchTerms: terms })}
-          value={this.state.searchTerms}
-        />
-        <Button
-          style={styles.searchButton}
-          title="search"
-          onPress={() => {
-            this.setState({
-              data: []
-            })
-            this.getData()
-          }}
-        />
-      </View>)
+      searchBar = (
+        <View style={styles.searchContainer}>
+          <TextInput
+            containerStyle={{ backgroundColor: 'blue' }}
+            placeholder="Add your ingredients"
+            placeholderTextColor="black"
+            onChangeText={terms => this.setState({ searchTerms: terms })}
+            value={this.state.searchTerms}
+          />
+          <Button
+            style={styles.searchButton}
+            title="search"
+            onPress={() => {
+              this.setState({
+                data: []
+              })
+              this.getData()
+            }}
+          />
+        </View>)
     } else {
       searchBar = <View></View>
     }
@@ -133,10 +134,6 @@ const styles = StyleSheet.create({
   },
   searchBarContainer: {
     flexDirection: "row",
-    // marginTop: 75,
-    // marginLeft: 10,
-    // marginRight: 10,
-    // position: 'fixed'
   },
   searchBarText: {
     flex: 1
@@ -144,5 +141,7 @@ const styles = StyleSheet.create({
   searchButton: {
     // height: 30,
     marginBottom: 8
+  },
+  searchContainer: {
   }
 })

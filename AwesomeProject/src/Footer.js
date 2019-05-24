@@ -8,6 +8,7 @@ import Random from "./Random.js";
 import Settings from "./Settings.js";
 import Search from "./Search.js";
 import Favorites from './Favorites';
+import SurpriseMe from './components/SurpriseMe'
 
 const FoodFeedStack = createStackNavigator({
   Feed: FoodFeed,
@@ -17,13 +18,21 @@ const FoodFeedStack = createStackNavigator({
     initialRouteName: 'Feed',
   });
 
+const FavoriteStack = createStackNavigator({
+  FavoriteFeed: Favorites,
+  FavoritePage: OnePage,
+},
+  {
+    initialRouteName: 'FavoriteFeed',
+  });
+
 const FeedContainer = createAppContainer(FoodFeedStack);
 
 const TabNavigator = createBottomTabNavigator({
   Home: FeedContainer,
   Search: Search,
-  Shuffle: Random,
-  Settings: Favorites,
+  Shuffle: SurpriseMe,
+  Settings: FavoriteStack,
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
