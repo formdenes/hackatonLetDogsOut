@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
-import { H2 , Header, Button, Icon, Left, Body, Right, Title, View, Text } from 'native-base';
+import { H2 , Header, Button, Icon, Left, Body, Right, Title, View, Text, Input } from 'native-base';
 // import { Button } from 'react-native-elements';
 // import FeedHeader from '../FeedHeader';
 
@@ -75,8 +75,10 @@ export default class FoodFeed extends Component {
     let searchBar;
     if (searchVisible) {
       searchBar = (
-        <View>
+        <View style={styles.searchBarBG}>
           <TextInput
+            autoFocus={true}
+            style={styles.searchBar}
             containerStyle={{ backgroundColor: 'blue' }}
             placeholder="Add your ingredients"
             placeholderTextColor="black"
@@ -91,7 +93,7 @@ export default class FoodFeed extends Component {
           />
         </View>)
     } else {
-      searchBar = <View></View>
+      /* searchBar = <View></View> */
     }
     const header = (
       <Header style={styles.header}>
@@ -115,7 +117,7 @@ export default class FoodFeed extends Component {
         </ Header>
     )
     return (
-      <View>
+      <View >
         {header}
         {searchBar}
         <FlatList
@@ -177,5 +179,19 @@ const styles = StyleSheet.create({
   },
   view: {
     backgroundColor: 'black'
+  },
+  searchBar: {
+    color: '#8512AF',
+    fontWeight: 'bold',
+    fontSize: 18,
+    padding: 10,
+    paddingLeft: 30,
+    margin: 10,
+    borderRadius: 25,
+    borderWidth: 2,
+    borderColor: 'grey',
+  },
+  searchBarBG: {
+    backgroundColor: '#ffd800'
   }
 })
