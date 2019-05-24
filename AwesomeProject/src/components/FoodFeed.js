@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
-import { H2 } from 'native-base';
-import { Button } from 'react-native-elements';
+import { StyleSheet, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
+import { H2 , Header, Button, Icon, Left, Body, Right, Title, View, Text } from 'native-base';
+// import { Button } from 'react-native-elements';
+// import FeedHeader from '../FeedHeader';
 
 
 export default class FoodFeed extends Component {
@@ -11,9 +12,13 @@ export default class FoodFeed extends Component {
       data: [],
       page: 1,
       testdata: [],
-      searchVisible: true,
+      searchVisible: false,
       searchTerms: ''
     }
+  }
+
+  static navigationOptions = {
+    header: null,
   }
 
   componentDidMount() {
@@ -66,23 +71,18 @@ export default class FoodFeed extends Component {
     )
   }
   render() {
-    console.log(this.state.data)
     const searchVisible = this.state.searchVisible;
     let searchBar;
     if (searchVisible) {
       searchBar = (
-        <View style={styles.searchContainer}>
+        <View>
           <TextInput
             containerStyle={{ backgroundColor: 'blue' }}
             placeholder="Add your ingredients"
             placeholderTextColor="black"
             onChangeText={terms => this.setState({ searchTerms: terms })}
             value={this.state.searchTerms}
-          />
-          <Button
-            style={styles.searchButton}
-            title="search"
-            onPress={() => {
+            onSubmitEditing={() => {
               this.setState({
                 data: []
               })
@@ -93,8 +93,30 @@ export default class FoodFeed extends Component {
     } else {
       searchBar = <View></View>
     }
+    const header = (
+      <Header style={styles.header}>
+          <Left>
+            <Button
+              onPress={() => this.setState(
+                { searchVisible: this.state.searchVisible !== true }
+              )}
+              style={{
+                backgroundColor: '#ffd800',
+                marginRight: '40%',
+              }}>
+              <Icon name='search' style={{ color: '#8512AF' }} />
+            </Button>
+          </Left>
+          <Right>
+            <Body>
+              <Title style={styles.headerTitle}>DOGFOOD</Title>
+            </Body>
+          </Right>
+        </ Header>
+    )
     return (
       <View>
+        {header}
         {searchBar}
         <FlatList
           style={styles.container}
@@ -143,5 +165,17 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   searchContainer: {
+  },
+  header: {
+    textAlign: 'center',
+    backgroundColor: '#ffd800',
+  },
+  headerTitle: {
+    color: '#8512AF',
+    justifyContent: 'center',
+    marginRight: '15%'
+  },
+  view: {
+    backgroundColor: 'black'
   }
 })
