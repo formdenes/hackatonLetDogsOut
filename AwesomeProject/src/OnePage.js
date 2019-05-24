@@ -6,7 +6,7 @@ export default class OneRecipePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      button: () => (<Button transparent textStyle={{ color: '#87838B' }} onPress={() => { this.postFavorite().catch(console.log) }}>
+      button: () => (<Button textStyle={{ color: '#87838B' }} onPress={() => { this.postFavorite().catch(console.log) }}>
         <Icon name="pizza" />
         <Text>Add Favorite</Text>
       </Button>),
@@ -42,7 +42,7 @@ export default class OneRecipePage extends Component {
     const respData = await response.json();
     if (respData.rows.affectedRows === 1) {
       this.setState({
-        button: () => (<Button transparent textStyle={{ color: 'red' }}>
+        button: () => (<Button textStyle={{ color: 'red' }}>
           <Icon name="pizza" />
           <Text>Added to Favorite</Text>
         </Button>)
