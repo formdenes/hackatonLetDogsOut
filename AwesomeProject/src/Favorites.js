@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
-import { H2 } from 'native-base';
-import { Button } from 'react-native-elements';
+import React, { Fragment, Component } from 'react';
+import { StyleSheet, View, Content, FlatList, Image, ActivityIndicator, TouchableHighlight, TextInput } from 'react-native';
+import { Button, Icon, Text, H2 } from 'native-base';
 
 
 export default class FoodFeed extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
       data: [],
       page: 1,
       testdata: [],
       searchVisible: true,
-      searchTerms: ''
+      searchTerms: '',
+      button: (item) => (<Button style={{ padding: 5, height: 40, width: 160, backgroundColor: '#8512AF' }} textStyle={{ color: '#8512AF' }} onPress={() => { this.deleteFavorite(item).catch(console.log) }}>
+        <Text style={{ color: 'white' }}>{'Delete Favorite  '}{/* <Icon name="flame" style={{ color: 'white' }} /> */}</Text>
+      </Button>)
     }
   }
 
@@ -20,12 +23,31 @@ export default class FoodFeed extends Component {
     this.getData()
   }
 
+  deleteFavorite = async (item) => {
+    const databaseURL = 'http://54.93.64.90:8080/delFav'; // TODO: change to the proper endpoint
+    const id = item.fav_id; // TODO: change to props
+    const postFavoriteOptions = {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ fav_id: id }),
+    };
+    const response = await fetch(databaseURL, postFavoriteOptions);
+    const respData = await response.json();
+    if (respData.rows.affectedRows === 1) {
+      console.log(this.state.data, 'show me the filtered data');
+    }
+    console.log('delete resp', respData);
+    this.getData();
+  }
+
   getData = async () => {
     let url = 'http://54.93.64.90:8080';
     fetch(url)
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson)
         this.setState({
           data: responseJson.rows,
         })
@@ -33,16 +55,19 @@ export default class FoodFeed extends Component {
   }
 
   renderRow = ({ item }) => {
+    console.log('how an item looks like', item)
     return (
-      <TouchableHighlight onPress={(e) => {
-        console.log(item);
+
+      <TouchableHighlight onPress={() => {
         return this.props.navigation.navigate('FavoritePage', item);
       }}>
         <View style={styles.item} >
           <Image source={{ uri: item.thumbnail ? item.thumbnail : 'https://freeiconshop.com/wp-content/uploads/edd/food-outline.png' }} style={styles.itemImage} />
-          <H2 style={styles.itemText}>{item.title}</H2>
+          <H2 style={styles.itemText}>{item.title}</H2>{this.state.button(item)}
         </View >
       </TouchableHighlight>
+
+
     )
   }
 
@@ -88,7 +113,6 @@ export default class FoodFeed extends Component {
     }
     return (
       <View>
-        {searchBar}
         <FlatList
           style={styles.container}
           data={this.state.data}
