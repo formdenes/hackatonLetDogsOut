@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { StyleSheet, Linking, H2, Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
+import { Image, StyleSheet } from 'react-native';
+import { Linking, H2, Container, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body } from 'native-base';
 export default class OneRecipePage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      button: () => (<Button textStyle={{ color: '#87838B' }} onPress={() => { this.postFavorite().catch(console.log) }}>
+      button: () => (<Button style={styles.button} textStyle={{ Color: '#87838B' }} onPress={() => { this.postFavorite().catch(console.log) }}>
         <Icon name="pizza" />
         <Text>Add Favorite</Text>
       </Button>),
@@ -119,3 +119,8 @@ export default class OneRecipePage extends Component {
     // marginTop: 20,
   },
 }) */
+const styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#8512AF'
+  }
+})
