@@ -61,7 +61,7 @@ app.post('/delFav', (req, res) => {
 
 const allData = () => {
   return new Promise((res, rej) => {
-    conn.query(`SELECT * FROM Favorites ORDER BY fav_id`, (err, rows) => {
+    conn.query(`SELECT * FROM Favorites ORDER BY fav_id DESC`, (err, rows) => {
       if (err) {
         rej(err);
       } else {
